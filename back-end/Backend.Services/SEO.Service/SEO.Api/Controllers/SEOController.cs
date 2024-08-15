@@ -1,6 +1,8 @@
 ﻿using Backend.Share.DTO.Implementations;
 using Backend.Share.DTO.Interfaces;
+using Backend.Share.Enums;
 using Microsoft.AspNetCore.Mvc;
+using SEO.Domain.Interfaces;
 
 namespace BackendApi.Controllers
 {
@@ -12,28 +14,31 @@ namespace BackendApi.Controllers
     public class SEOController : Controller
     {
         private readonly ILogger<SEOController> logger;
+        private readonly ISEOService seoService;
 
         /// <summary>
         /// Constructor to initialize SEOController with dependencies
         /// </summary>
         /// <param name="logger">Log service</param>
-        public SEOController(ILogger<SEOController> logger)
+        /// <param name="seoService"></param>
+        public SEOController(ILogger<SEOController> logger, ISEOService seoService)
         {
             this.logger = logger;
+            this.seoService = seoService;
         }
 
         /// <summary>
-        /// Gets all the items.
+        /// Gets SEO info based on query and search provider
         /// </summary>
-        /// <returns>List of items</returns>
+        /// <returns>The result SEOInfo</returns>
         /// <response code="200">Returns the list of items</response>
         /// <response code="400">If the request is invalid</response>
-        [HttpGet(Name = "GetSEO")]
+        [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ISEOInfoDTO Get()
+        public Task<ISEOInfoDTO> Post(string query, SearchProvider searchProvider)
         {
-            return new SEOInfoDTO();
+            return seoService.GetSeoInfo(query, searchProvider);
         }
     }
 }

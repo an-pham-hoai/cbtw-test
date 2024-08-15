@@ -12,5 +12,6 @@ namespace Backend.Share.DTO.Interfaces
         SearchProvider SearchProvider { get; set; }
         string Query { get; set; }
         int Rank { get; set; }
+        string Error { get; set; }
     }
 }

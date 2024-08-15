@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SEO.Domain
+namespace SEO.Domain.Interfaces
 {
-    public class Class1
+    public interface IGoogleService : ISearchService
     {
     }
 }

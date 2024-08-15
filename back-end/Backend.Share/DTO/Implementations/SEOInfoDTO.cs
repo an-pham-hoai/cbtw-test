@@ -13,5 +13,6 @@ namespace Backend.Share.DTO.Implementations
         public SearchProvider SearchProvider { get; set; }
         public string Query { get; set; }
         public int Rank { get; set; }
+        public string Error { get; set; }
     }
 }
