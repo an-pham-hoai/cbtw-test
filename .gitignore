@@ -1,0 +1,10 @@
+
+back-end/.vs/
+back-end/Backend.Services/SEO.Service/SEO.Api/bin/
+back-end/Backend.Services/SEO.Service/SEO.Api/obj/
+back-end/Backend.Services/SEO.Service/SEO.Domain/bin/
+back-end/Backend.Services/SEO.Service/SEO.Domain/obj/
+back-end/Backend.Share/bin/
+back-end/Backend.Share/obj/
+back-end/Backend.Tests/bin/
+back-end/Backend.Tests/obj/
