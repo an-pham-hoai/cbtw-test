@@ -1,6 +1,7 @@
 ﻿using Backend.Share.DTO.Implementations;
 using Backend.Share.DTO.Interfaces;
 using Backend.Share.Enums;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SEO.Domain.Interfaces;
 
@@ -11,6 +12,7 @@ namespace BackendApi.Controllers
     /// </summary>
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("AllowSpecificOrigin")]
     public class SEOController : Controller
     {
         private readonly ILogger<SEOController> logger;

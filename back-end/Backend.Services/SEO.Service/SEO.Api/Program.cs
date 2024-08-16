@@ -1,8 +1,15 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using SEO.Domain.Implementations;
 using SEO.Domain.Interfaces;
+using SEOApi.Extensions;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//add CORs
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
+if (allowedOrigins != null) builder.Services.AddCustomCors(allowedOrigins);
 
 //config dependency injections
 builder.Services.AddScoped<ISEOService, SEOService>();
@@ -32,7 +39,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors(); // Apply the CORS policy
 app.UseAuthorization();
 
 app.MapControllers();

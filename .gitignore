@@ -9,3 +9,5 @@ back-end/Backend.Share/obj/
 back-end/Backend.Tests/bin/
 back-end/Backend.Tests/obj/
 .vs/
+front-end/MVC/bin/
+front-end/MVC/obj/
