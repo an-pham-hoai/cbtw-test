@@ -41,10 +41,10 @@ namespace BackendApi.Controllers
         /// <returns>The result SEOInfo</returns>
         /// <response code="200">Returns the list of items</response>
         /// <response code="400">If the request is invalid</response>
-        [HttpPost]
+        [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Task<ISEOInfoDTO> Post(string query, SearchProvider searchProvider)
+        public Task<ISEOInfoDTO> Get(string query, SearchProvider searchProvider)
         {
             return seoService.GetSeoInfo(query, searchProvider);
         }
