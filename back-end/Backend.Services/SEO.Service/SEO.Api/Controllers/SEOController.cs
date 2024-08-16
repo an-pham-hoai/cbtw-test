@@ -28,7 +28,13 @@ namespace BackendApi.Controllers
         }
 
         /// <summary>
-        /// Gets SEO info based on query and search provider
+        /// Gets SEO info based on query and search provider (1=Google, 2=Bing).
+        /// 
+        /// Only Google has real implementation, Bing has mockup one. 
+        /// It is placed here for the purpose of making the system easy to expand later.
+        /// 
+        /// Note: if you receive error: Response status code does not indicate success: 
+        /// 429 (Too Many Requests) => please try again after a while because Google has rate limiter.
         /// </summary>
         /// <returns>The result SEOInfo</returns>
         /// <response code="200">Returns the list of items</response>

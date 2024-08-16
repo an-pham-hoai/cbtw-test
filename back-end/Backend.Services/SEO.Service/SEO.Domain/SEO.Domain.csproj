@@ -42,10 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implementations\BingService.cs" />
+    <Compile Include="Implementations\FetchService.cs" />
     <Compile Include="Implementations\GoogleService.cs" />
+    <Compile Include="Implementations\HTMLService.cs" />
     <Compile Include="Implementations\SEOService.cs" />
     <Compile Include="Interfaces\IBingService.cs" />
+    <Compile Include="Interfaces\IFetchService.cs" />
     <Compile Include="Interfaces\IGoogleService.cs" />
+    <Compile Include="Interfaces\IHTMLService.cs" />
     <Compile Include="Interfaces\ISearchService.cs" />
     <Compile Include="Interfaces\ISEOService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

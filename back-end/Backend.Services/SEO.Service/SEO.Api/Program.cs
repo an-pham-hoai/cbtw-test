@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<ISEOService, SEOService>();
 builder.Services.AddScoped<IGoogleService, GoogleService>();
 builder.Services.AddScoped<IBingService, BingService>();
+builder.Services.AddScoped<IFetchService, FetchService>();
+builder.Services.AddScoped<IHTMLService, HTMLService>();
 
 builder.Services.AddControllers();
 

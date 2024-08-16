@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTO\Implementations\FetchDTO.cs" />
     <Compile Include="DTO\Implementations\SEOInfoDTO.cs" />
+    <Compile Include="DTO\Interfaces\IFetchDTO.cs" />
     <Compile Include="DTO\Interfaces\ISEOInfoDTO.cs" />
     <Compile Include="Enums\SearchProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace SEO.Domain.Implementations
 {
+    /// <summary>
+    /// Mock implementation for 2nd search engine
+    /// </summary>
     public class BingService : IBingService
     {
         public Task<ISEOInfoDTO> GetSeoInfo(string query)
