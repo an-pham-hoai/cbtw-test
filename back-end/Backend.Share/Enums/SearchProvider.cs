@@ -11,6 +11,7 @@ namespace Backend.Share.Enums
     /// </summary>
     public enum SearchProvider
     {
+        None = 0,
         Google = 1,
         Bing = 2,
     }

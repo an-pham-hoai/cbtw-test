@@ -39,14 +39,29 @@ namespace BackendApi.Controllers
         /// 429 (Too Many Requests) => please try again after a while because Google has rate limiter.
         /// </summary>
         /// <returns>The result SEOInfo</returns>
-        /// <response code="200">Returns the list of items</response>
+        /// <response code="200">indicates that the request sent by the client to the server was successfully received, 
+        /// understood, and processed.</response>
         /// <response code="400">If the request is invalid</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public Task<ISEOInfoDTO> Get(string query, SearchProvider searchProvider)
+        public async Task<ActionResult<ISEOInfoDTO>> Get(string query, SearchProvider searchProvider)
         {
-            return seoService.GetSeoInfo(query, searchProvider);
+            //validations
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return BadRequest("Required parameter: query");
+            }
+
+            if (searchProvider == SearchProvider.None)
+            {
+                return BadRequest("Required parameter: searchProvider");
+            }
+
+            //end validations
+
+            var result = await seoService.GetSeoInfo(query, searchProvider);
+            return Ok(result);
         }
     }
 }
