@@ -58,6 +58,8 @@
             // Serialize the form data
             $('#jsonResponse').val('');
             var formData = $(this).serialize();
+            var form = $(this);
+            form.find("input[type='submit']").prop('disabled', true);
 
             // Perform the AJAX request
             $.ajax({
@@ -68,10 +70,12 @@
                 success: function (response) {
                     // Display the JSON response in the textarea
                     $('#jsonResponse').val(JSON.stringify(response, null, 2));
+                    form.find("input[type='submit']").prop('disabled', false);
                 },
                 error: function (xhr, status, error) {
                     // Handle any errors
                     console.error('AJAX Error: ', status, error);
+                    form.find("input[type='submit']").prop('disabled', false);
                 }
             });
         });
