@@ -1,5 +1,6 @@
 ﻿using Backend.Share.DTO.Implementations;
 using Backend.Share.DTO.Interfaces;
+using Backend.Share.Enums;
 using SEO.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,11 @@ namespace SEO.Domain.Implementations
         public Task<ISEOInfoDTO> GetSeoInfo(string query)
         {
             return Task.FromResult<ISEOInfoDTO>(
-                new SEOInfoDTO()    
+                new SEOInfoDTO()
+                {
+                    Query = query,
+                    SearchProvider = SearchProvider.Bing,
+                }
             );
         }
     }

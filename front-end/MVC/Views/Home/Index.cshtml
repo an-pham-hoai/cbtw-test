@@ -1,13 +1,79 @@
-﻿@{
+﻿@model SearchViewModel
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Infotrack SEO Rank Check</h1>
-    
-    <form action="https://localhost:7266/SEO/" method="get">
-        <input type="text" name="query" value="land registry search" /><br />
-        <input type="hidden" name="searchProvider" value="1" /><br />
+
+    @using (Html.BeginForm(null, null, FormMethod.Get, new { action = $"{this.Model.ApiUrl}/SEO", id = "seoForm" }))
+    {
+        <div>
+            @Html.LabelFor(m => m.Query)
+            @Html.TextBoxFor(m => m.Query)
+            @Html.ValidationMessageFor(m => m.Query)
+        </div>
+
+        <input type="hidden" name="searchProvider" value="1" />
+        <br />
         <input type="submit" value="Calculate SEO Rank" />
-    </form>
+    }
+
+    <h2 class="mt-3">JSON response</h2>
+    <!-- Textarea to display the JSON response -->
+    <textarea id="jsonResponse" rows="10" cols="50"></textarea>
+    
 </div>
+
+<script>
+    $(document).ready(function () {
+
+        console.log('document loaded');
+
+        $.validator.addMethod("noWhitespace", function (value, element) {
+            return this.optional(element) || $.trim(value).length > 0;
+        }, "This field is required and cannot contain only spaces.");
+
+        $("#seoForm").validate({
+            rules: {
+                Query: {
+                    required: true,
+                    noWhitespace: true
+                }
+            },
+            messages: {
+                Query: {
+                    required: "Please enter your query.",
+                    noWhitespace: "This field cannot be empty or contain only spaces.",
+
+                },
+            }
+        });
+
+        $("#seoForm").submit(function (event) {
+            console.log('seoForm submit');
+            event.preventDefault(); // Prevent the default form submission
+
+            // Serialize the form data
+            $('#jsonResponse').val('');
+            var formData = $(this).serialize();
+
+            // Perform the AJAX request
+            $.ajax({
+                url: $(this).attr('action'), // Get the form action URL
+                type: 'GET',
+                data: formData, // Form data
+                dataType: 'json', // Expect JSON response
+                success: function (response) {
+                    // Display the JSON response in the textarea
+                    $('#jsonResponse').val(JSON.stringify(response, null, 2));
+                },
+                error: function (xhr, status, error) {
+                    // Handle any errors
+                    console.error('AJAX Error: ', status, error);
+                }
+            });
+        });
+    });
+</script>

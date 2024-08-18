@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using MVC.Models;
 using System.Diagnostics;
 
@@ -6,16 +7,19 @@ namespace MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApiSettings apiSettings;
+        private readonly ILogger<HomeController> logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IOptions<ApiSettings> apiSettings)
         {
-            _logger = logger;
+            this.logger = logger;
+            this.apiSettings = apiSettings.Value;
         }
 
         public IActionResult Index()
         {
-            return View();
+            SearchViewModel searchViewModel = new SearchViewModel(apiSettings);
+            return View(searchViewModel);
         }
 
         public IActionResult Privacy()
